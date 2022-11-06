@@ -7,15 +7,20 @@
 
 (btw if you can not read what is says above, it is just saying changelog!)
 
-Here is where I will post updates on when a new game is added or something changed. Besure to check back often for any sneakpeaks or other goodies! If I can I will try to setup a RSS feed for all of those who use that. Coming soon!
+Here is where I will post updates on when a new game is added or something changed. Besure to check back often for any sneakpeaks or other goodies! If I can I will try to setup a RSS feed for all of those who use that. Coming soon-ish!
 
 Besure to also join the discord: https://discord.gg/wv6huJAwEv
 
-NOTE: Make sure you refresh the page! Sometimes you will not get the lastest update!
+NOTE: Make sure you refresh the page! Sometimes you will not get the lastest copy of this document!
 
 + Means something was added
 ^ Means something was upgraded or changed
 - Means something was removed
+------------------------------------------------------------
+Nov, 6
+Join the discord now! If we get to 900 members by the end of 2022, we will have a nitro giveaway! https://discord.com/invite/wv6huJAwEv
++ Added Awesome Tanks 2
+- Removed trailing whitespace in changelog
 ------------------------------------------------------------
 Nov, 5
 LAX1DUDE has announced that he is going to stop development on eaglercraft, sadge
@@ -309,8 +314,8 @@ Mar, 18
 ^ Fixed error with Tab Cloak icon not loading on the comments page.
 ------------------------------------------------------------
 Mar, 17
-+ Added The Lost Ball 
-+ Added Geometry Dash 
++ Added The Lost Ball
++ Added Geometry Dash
 ------------------------------------------------------------
 Mar, 15
 Just quick little note, I will be going to the beach tomarrow so expect updates to be delayed.
@@ -334,7 +339,7 @@ Mar, 12
 Long time no see! Here are some amazing updates!
 + Added Wordle
 + Added Madalin Stunt Cars 2
-+ Added Ducklife 
++ Added Ducklife
 ------------------------------------------------------------
 Mar, 8
 + Added TAB CLOAK!!! --> https://3kh0.github.io/dump/tab-cloak.html
@@ -348,7 +353,7 @@ Mar, 8
 ------------------------------------------------------------
 Mar, 2
 + Added Vex 6
-+ Added Edge not found 
++ Added Edge not found
 ------------------------------------------------------------
 Mar, 1
 + Added back comment box! (please do not abuse it)
@@ -373,7 +378,7 @@ Feb, 23
 ------------------------------------------------------------
 Feb, 22
 Happy TWOsday! Haha
-+ Added Vex 4 
++ Added Vex 4
 + Added Vex 3
 ^ Add back tetris icon for project menu (thx u4pak!)
 ------------------------------------------------------------
@@ -398,3 +403,7 @@ Happy Valentines day for those how celebrate it!
 ------------------------------------------------------------
 
 Looks like you have reached the end!
+
+All changes before this are not offically documented, you
+just might have to dig through the git logs to find updates,
+and the commit messages were not that descriptive back then.
