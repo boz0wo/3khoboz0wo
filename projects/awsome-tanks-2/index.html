@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Awesome Tanks</title>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/fonts.css" rel="stylesheet" />
+    <meta name="apple-mobile-web-app-title" content="Awesome Tanks" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <style type="text/css">
+      .no-select {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+      }
+    </style>
+
+    <script type="text/javascript">
+      setTimeout(function () {
+        if (document.getElementsByTagName("canvas").length) {
+          document.getElementsByTagName("body")[0].classList.add("no-select");
+        }
+      }, 2000);
+    </script>
+    <script type="text/javascript">
+      function setUserAgent(window, userAgent) {
+        // Works on Firefox, Chrome, Opera and IE9+
+        if (navigator.__defineGetter__) {
+          navigator.__defineGetter__("userAgent", function () {
+            return userAgent;
+          });
+        } else if (Object.defineProperty) {
+          Object.defineProperty(navigator, "userAgent", {
+            get: function () {
+              return userAgent;
+            },
+          });
+        }
+        // Works on Safari
+        if (window.navigator.userAgent !== userAgent) {
+          var userAgentProp = {
+            get: function () {
+              return userAgent;
+            },
+          };
+          try {
+            Object.defineProperty(window.navigator, "userAgent", userAgentProp);
+          } catch (e) {
+            window.navigator = Object.create(navigator, {
+              userAgent: userAgentProp,
+            });
+          }
+        }
+      }
+      if (window.navigator.userAgent.indexOf("Safari") >= 0 && "ontouchstart" in window && !/iPhone|Android/.test(window.navigator.userAgent)) {
+        //var userAgent = window.navigator.userAgent.replace("Macintosh", "iPad");
+        var userAgent = "Mozilla/5.0 (iPad; CPU OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1";
+        setUserAgent(window, userAgent);
+      }
+      //GA event helper functions
+      function getCookie(key) {
+        var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+        return keyValue ? keyValue[2] : null;
+      }
+      function setCookie2(key, value, exptime, domain) {
+        //document.cookie = key + "=" + value + ";";
+        var d = new Date();
+        d.setTime(d.getTime() + exptime);
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = key + "=" + value + "; " + expires + "; path=/; domain=" + domain;
+      }
+      var enableDebug = false;
+      function debugOut(msg) {
+        if (typeof getParameterByName === "function" && getParameterByName("debug") !== "") {
+          enableDebug = getParameterByName("debug");
+        }
+        if (enableDebug) {
+          console.log(msg);
+        }
+      }
+      function getParameterByName(name) {
+        var regexS = "[\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(location.href);
+        if (results !== null) {
+          return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        //Check the parent window
+        var results = regex.exec(window.top.location.href);
+        if (results === null) {
+          return "";
+        }
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      function getBrowserNameVer() {
+        var sBrowser,
+          sUsrAg = navigator.userAgent;
+        // The order matters here, and this may report false positives for unlisted browsers.
+        if (sUsrAg.indexOf("Firefox") > -1) {
+          sBrowser = "Mozilla Firefox";
+          // "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0"
+        } else if (sUsrAg.indexOf("SamsungBrowser") > -1) {
+          sBrowser = "Samsung Internet";
+          // "Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-G955F Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/9.4 Chrome/67.0.3396.87 Mobile Safari/537.36
+        } else if (sUsrAg.indexOf("Opera") > -1 || sUsrAg.indexOf("OPR") > -1) {
+          sBrowser = "Opera";
+          // "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.106"
+        } else if (sUsrAg.indexOf("Trident") > -1) {
+          sBrowser = "Microsoft Internet Explorer";
+          // "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; Zoom 3.6.0; wbx 1.0.0; rv:11.0) like Gecko"
+        } else if (sUsrAg.indexOf("Edge") > -1) {
+          sBrowser = "Microsoft Edge (Legacy)";
+          // "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299"
+        } else if (sUsrAg.indexOf("Edg") > -1) {
+          sBrowser = "Microsoft Edge (Chromium)";
+          // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64
+        } else if (sUsrAg.indexOf("Chrome") > -1) {
+          sBrowser = "Google Chrome or Chromium";
+          // "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/66.0.3359.181 Chrome/66.0.3359.181 Safari/537.36"
+        } else if (sUsrAg.indexOf("Safari") > -1) {
+          sBrowser = "Apple Safari";
+          // "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1 980x1306"
+        } else if (!/Safari|CriOS/.test(sUsrAg) && /iPhone|iPad\iPod/.test(sUsrAg)) {
+          //( /iPhone|iPad\iPod/.test(sUsrAg) &&  /Safari/.test(sUsrAg) )
+          sBrowser = "iPhone Safari WebView";
+        } else {
+          sBrowser = "unknown";
+        }
+        sUsrAgArr = navigator.userAgent.split(" ");
+        sBrowser = sBrowser + " " + sUsrAgArr[0] + " " + sUsrAgArr[sUsrAgArr.length - 1];
+        debugOut("You are using: " + sBrowser);
+        return sBrowser;
+      }
+
+      function trackEvent(category, action, label, value) {
+        if (typeof value === "undefined" || value === null) {
+          value = 0;
+        }
+        if (typeof __gaTracker !== "undefined") {
+          __gaTracker("send", { hitType: "event", eventCategory: category, eventAction: action, eventLabel: label, eventValue: value });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p style="font-family: 'Gunplay'; position: absolute; pointer-events: none; opacity: 0;">Font loader</p>
+    <script>
+      var AT = {
+        // URL where an user will be redirected after clicking "Play" button on the Site lock screen
+        SITE_LOCK_TARGET: "//www.coolmathgames.com/",
+      };
+
+      var WebFontConfig = {
+        classes: false,
+        timeout: 0,
+        active: function () {},
+        custom: { families: ["Gunplay"], urls: ["styles/fonts.css"] },
+      };
+    </script>
+    <script src="awesome_tanks_2.js"></script>
+    <script>
+      function fnSendMsg(evt) {
+        if (typeof window.parent.postMessage == "function") {
+          window.parent.postMessage("keypress-from-game", "*");
+        } else if (typeof window.top.postMessage == "function" && window.top != window.self) {
+          window.top.postMessage("keypress-from-game", "*");
+        }
+      }
+      document.body.addEventListener("click", function (event) {
+        fnSendMsg(event);
+      });
+      document.addEventListener("keypress", function (event) {
+        fnSendMsg(event);
+      });
+      document.addEventListener("keydown", function (e) {
+        fnSendMsg(event);
+      });
+      document.addEventListener("keyup", function (e) {
+        fnSendMsg(event);
+      });
+    </script>
+  </body>
+</html>
